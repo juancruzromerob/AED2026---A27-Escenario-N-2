@@ -1,6 +1,23 @@
 #include <stdio.h>
 
-int main(void) {
-	puts("Hola mundo!");
-	return 0;
+int main(void)
+{
+    int opcion;
+
+    do {
+        printf("\n==================================================\n");
+        printf("   ARTEMIS - Insercion y estabilidad en orbita LEO\n");
+        printf("==================================================\n");
+        printf(" 1. Ver / cambiar datos de la orbita\n");
+        printf(" 2. (a) Gravedad como fuerza centripeta y velocidad\n");
+        printf(" 3. (b) Periodo orbital\n");
+        printf(" 4. (c) Aceleracion centripeta\n");
+        printf(" 5. (d) Pulso del propulsor lateral\n");
+        printf(" 6. Desafio: insercion orbital (juego)\n");
+        printf(" 7. Simulacion grafica\n");
+        printf(" 8. Reporte de mision\n");
+        printf(" 0. Salir\n");
+        scanf("%d", &opcion);
+    } while (opcion != 0);
+    return 0;
 }
