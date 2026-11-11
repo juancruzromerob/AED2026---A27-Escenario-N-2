@@ -59,7 +59,7 @@ double leerFlotante(const char *mensaje, double min, double max) {
             mostrarError("No escribiste nada.");
             continue;
         }
-        coma = strchr(linea, ",");
+        coma = strchr(linea, ',');
 
         if (coma != NULL) *coma = '.';
 
