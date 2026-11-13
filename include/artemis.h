@@ -20,5 +20,13 @@
 
 #define RUTA_TIERRA    "assets/tierra.png"
 #define RUTA_COHETE    "assets/cohete.png"
-
+typedef struct {
+    double altura;
+    double masa;
+    double radio;
+    double fuerzaGrav;
+    double velocidad;
+    double periodo;
+    double acelCentripeta;
+} Orbita;
 #endif
