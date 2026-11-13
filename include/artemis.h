@@ -29,7 +29,21 @@ typedef struct {
     double periodo;
     double acelCentripeta;
 } Orbita;
+
+
+typedef struct {
+    double aceleracion;
+    double tiempo;
+    double desvio;
+    double velLateral;
+    double velResultante;
+    double angulo;
+    int    realizado;
+} Pulso;
+
+
 void inicializarOrbita(Orbita *o, double altura, double masa);
 void calcularOrbita(Orbita *o);
 
+void calcularPulso(const Orbita *o, Pulso *p); //definir porfa
 #endif
