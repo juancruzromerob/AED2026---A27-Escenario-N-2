@@ -1,8 +1,13 @@
 #include <stdio.h>
+#include "artemis.h"
+#include "validaciones.h"
 
 int main(void)
 {
+    Orbita orbita;
     int opcion;
+
+    inicializarOrbita(&orbita, ALTURA_INICIAL, MASA_ORION);
 
     do {
         printf("\n==================================================\n");
@@ -17,7 +22,22 @@ int main(void)
         printf(" 7. Simulacion grafica\n");
         printf(" 8. Reporte de mision\n");
         printf(" 0. Salir\n");
-        scanf("%d", &opcion);
+
+        opcion = leerEntero("Elegi una opcion: ", 0, 8);
+
+        switch (opcion) {
+            case 1:
+                configurarOrbita(&orbita);
+                break;
+            case 0:
+                printf("Fin de la simulacion. Hasta luego!\n");
+                break;
+        }
+
+        if (opcion != 0) {
+            pausar();
+        }
     } while (opcion != 0);
+
     return 0;
 }
