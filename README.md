@@ -3,7 +3,7 @@ Problema 2: Inserción y Estabilidad en Órbita Terrestre Baja — LEO (MCU y Gr
 
 integrantes:
 * Nasir Yamil
-* Romero Berh Juan cruz
+* Romero Behr Juan cruz
 * Lopez Constanza
 * Vicencio Camila
 * Cañete Lucas
