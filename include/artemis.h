@@ -29,4 +29,7 @@ typedef struct {
     double periodo;
     double acelCentripeta;
 } Orbita;
+void inicializarOrbita(Orbita *o, double altura, double masa);
+void calcularOrbita(Orbita *o);
+
 #endif
