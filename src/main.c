@@ -27,8 +27,12 @@ int main(void)
 
         switch (opcion) {
             case 1:
+            
                 configurarOrbita(&orbita);
                 break;
+            case 2: mostrarVelocidad(&orbita);                  break;
+            case 3: mostrarPeriodo(&orbita);                    break;
+            case 4: mostrarAceleracion(&orbita);                break;
             case 0:
                 printf("Fin de la simulacion. Hasta luego!\n");
                 break;
