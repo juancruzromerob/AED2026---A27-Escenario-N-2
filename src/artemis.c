@@ -71,3 +71,36 @@ void mostrarAceleracion(const Orbita *o)
            o->acelCentripeta, o->acelCentripeta / 9.80 * 100.0);
     printf("Los astronautas flotan porque caen junto con la nave, no porque no haya gravedad.\n");
 }
+void calcularPulso(const Orbita *o, Pulso *p)
+{
+    p->desvio = 0.5 * p->aceleracion * p->tiempo * p->tiempo;
+    p->velLateral = p->aceleracion * p->tiempo;
+    p->velResultante = sqrt(o->velocidad * o->velocidad + p->velLateral * p->velLateral);
+    p->angulo = atan(p->velLateral / o->velocidad) * 180.0 / NUM_PI;
+    p->realizado = 1;
+}
+void mostrarPulso(const Orbita *o, Pulso *p)
+{
+    printf("\n--- (d) PULSO DEL PROPULSOR LATERAL ---\n");
+    printf("Valores del enunciado: a = %.2f m/s^2 durante %.1f s\n", PULSO_ACEL, PULSO_TIEMPO);
+
+    if (leerSiNo("Usar esos valores?") == 's') {
+        p->aceleracion = PULSO_ACEL;
+        p->tiempo = PULSO_TIEMPO;
+    } else {
+        p->aceleracion = leerFlotante("Aceleracion del pulso en m/s^2 (0.01 a 10): ", 0.01, 10.0);
+        p->tiempo = leerFlotante("Duracion del pulso en s (0.1 a 120): ", 0.1, 120.0);
+    }
+
+    calcularPulso(o, p);
+
+    printf("\nTrayectoria: durante el pulso la nave sigue avanzando a %.2f m/s (MRU)\n", o->velocidad);
+    printf("y a la vez acelera hacia el costado (MRUV). La suma de los dos\n");
+    printf("movimientos da una curva parabolica, como un tiro horizontal.\n\n");
+    printf("Desviacion lateral   d  = 1/2 * a * t^2 = %.2f m\n", p->desvio);
+    printf("Velocidad lateral    vl = a * t         = %.2f m/s\n", p->velLateral);
+    printf("Velocidad resultante v' = %.4f m/s\n", p->velResultante);
+    printf("Angulo de desvio respecto de la orbita = %.4f grados\n", p->angulo);
+    printf("\nComo ahora la velocidad tiene una componente lateral, la nave deja la orbita\n");
+    printf("original y pasa a una orbita apenas inclinada (y algo eliptica).\n");
+}
