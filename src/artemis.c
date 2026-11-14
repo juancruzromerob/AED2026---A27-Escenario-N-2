@@ -188,3 +188,67 @@ static void dibujarImagen(Texture2D tex, Vector2 pos, float tamanio, float rotac
     pivote = (Vector2){ destino.width / 2.0f, destino.height / 2.0f };
     DrawTexturePro(tex, origen, destino, pivote, rotacion, WHITE);
 }
+
+void simulacionGrafica(const Orbita *o)
+{
+    const int ancho = 900;
+    const int alto = 700;
+    const float escalaTiempo = 100.0f;
+    const float radioTierraPx = 180.0f;
+    const float radioOrbitaPx = radioTierraPx + 30.0f + (float)(o->altura / 1000.0) * 0.06f;
+
+    double omega = 2.0 * NUM_PI / o->periodo;
+    double angulo = 0.0;
+    double tiempoSim = 0.0;
+    int pausado = 0;
+    Vector2 centro = { ancho / 2.0f, alto / 2.0f };
+    Vector2 posCohete;
+    Texture2D tierra;
+    Texture2D cohete;
+
+    printf("\nAbriendo simulacion grafica... (ESC para volver al menu)\n");
+
+    SetTraceLogLevel(LOG_WARNING);
+    InitWindow(ancho, alto, "Artemis - Orbita LEO");
+    SetTargetFPS(60);
+
+    tierra = LoadTexture(RUTA_TIERRA);
+    cohete = LoadTexture(RUTA_COHETE);
+
+    while (!WindowShouldClose()) {
+        if (IsKeyPressed(KEY_SPACE)) {
+            pausado = !pausado;
+        }
+
+        if (!pausado) {
+            double dt = GetFrameTime() * escalaTiempo;
+            tiempoSim += dt;
+            angulo += omega * dt;
+        }
+
+        posCohete.x = centro.x + radioOrbitaPx * (float)cos(angulo);
+        posCohete.y = centro.y - radioOrbitaPx * (float)sin(angulo);
+
+        BeginDrawing();
+        ClearBackground(BLACK);
+
+        DrawCircleLines((int)centro.x, (int)centro.y, radioOrbitaPx, DARKGRAY);
+        dibujarImagen(tierra, centro, radioTierraPx * 2.0f, 0.0f, BLUE);
+        dibujarImagen(cohete, posCohete, 40.0f, (float)(-angulo * 180.0 / NUM_PI), RED);
+
+        DrawText(TextFormat("Altura: %.1f km", o->altura / 1000.0), 10, 10, 20, WHITE);
+        DrawText(TextFormat("Velocidad: %.1f m/s", o->velocidad), 10, 35, 20, WHITE);
+        DrawText(TextFormat("Periodo: %.1f min", o->periodo / 60.0), 10, 60, 20, WHITE);
+        DrawText(TextFormat("Acel. centripeta: %.2f m/s^2", o->acelCentripeta), 10, 85, 20, WHITE);
+        DrawText(TextFormat("Tiempo simulado: %.0f s  |  Vueltas: %.2f",
+                            tiempoSim, tiempoSim / o->periodo), 10, 110, 20, YELLOW);
+        DrawText("x100 velocidad | ESPACIO: pausa | ESC: volver | altura no a escala",
+                 10, alto - 30, 18, GRAY);
+
+        EndDrawing();
+    }
+
+    UnloadTexture(tierra);
+    UnloadTexture(cohete);
+    CloseWindow();
+}
