@@ -41,6 +41,14 @@ typedef struct {
     int    realizado;
 } Pulso;
 
+typedef struct {
+    double intentos[MAX_INTENTOS];
+    int    cantidad;
+    int    gano;
+    int    partidas;
+    int    victorias;
+} Desafio;
+
 
 void inicializarOrbita(Orbita *o, double altura, double masa);
 void calcularOrbita(Orbita *o);
@@ -52,4 +60,6 @@ void mostrarAceleracion(const Orbita *o);
  
 void calcularPulso(const Orbita *o, Pulso *p);
 void mostrarPulso(const Orbita *o, Pulso *p);
+
+void jugarDesafio(const Orbita *o, Desafio *d); /*a definir*/
 #endif
