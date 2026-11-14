@@ -172,3 +172,19 @@ void mostrarReporte(const Orbita *o, const Pulso *p, const Desafio *d)
     }
     printf("\n===================================================\n");
 }
+static void dibujarImagen(Texture2D tex, Vector2 pos, float tamanio, float rotacion, Color respaldo)
+{
+    Rectangle origen;
+    Rectangle destino;
+    Vector2 pivote;
+
+    if (tex.id == 0) {
+        DrawCircleV(pos, tamanio / 2.0f, respaldo);
+        return;
+    }
+
+    origen = (Rectangle){ 0, 0, (float)tex.width, (float)tex.height };
+    destino = (Rectangle){ pos.x, pos.y, tamanio, tamanio * tex.height / tex.width };
+    pivote = (Vector2){ destino.width / 2.0f, destino.height / 2.0f };
+    DrawTexturePro(tex, origen, destino, pivote, rotacion, WHITE);
+}

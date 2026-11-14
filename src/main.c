@@ -15,7 +15,7 @@ int main(void)
         printf("   ARTEMIS - Insercion y estabilidad en orbita LEO\n");
         printf("==================================================\n");
         printf(" 1. Ver / cambiar datos de la orbita\n");
-        printf(" 2. (a) Gravedad como fuerza centripeta y velocidad\n");""
+        printf(" 2. (a) Gravedad como fuerza centripeta y velocidad\n");
         printf(" 3. (b) Periodo orbital\n");
         printf(" 4. (c) Aceleracion centripeta\n");
         printf(" 5. (d) Pulso del propulsor lateral\n");

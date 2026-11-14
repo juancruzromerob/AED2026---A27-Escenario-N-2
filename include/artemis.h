@@ -63,4 +63,5 @@ void mostrarPulso(const Orbita *o, Pulso *p);
 
 void jugarDesafio(const Orbita *o, Desafio *d);
 void mostrarReporte(const Orbita *o, const Pulso *p, const Desafio *d);
+void simulacionGrafica(const Orbita *o);
 #endif
