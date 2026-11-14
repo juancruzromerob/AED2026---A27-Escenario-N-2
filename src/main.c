@@ -6,6 +6,7 @@ int main(void)
 {
     Orbita orbita;
     Pulso pulso = { 0 };
+    Desafio desafio = { 0 };
     int opcion;
     inicializarOrbita(&orbita, ALTURA_INICIAL, MASA_ORION);
 
@@ -33,6 +34,8 @@ int main(void)
             case 3: mostrarPeriodo(&orbita);                    break;
             case 4: mostrarAceleracion(&orbita);                break;
             case 5: mostrarPulso(&orbita, &pulso);              break;
+            case 6: jugarDesafio(&orbita, &desafio);            break;
+            case 8: mostrarReporte(&orbita, &pulso, &desafio);  break;
             case 0:
                 printf("Fin de la simulacion. Hasta luego!\n");
                 break;
