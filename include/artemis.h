@@ -45,6 +45,10 @@ typedef struct {
 void inicializarOrbita(Orbita *o, double altura, double masa);
 void calcularOrbita(Orbita *o);
 void configurarOrbita(Orbita *o);
+
+void mostrarVelocidad(const Orbita *o);
+void mostrarPeriodo(const Orbita *o);
+void mostrarAceleracion(const Orbita *o);
  
 void calcularPulso(const Orbita *o, Pulso *p); //definir porfa
 #endif
