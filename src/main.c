@@ -8,6 +8,7 @@ int main(void)
     Pulso pulso = { 0 };
     Desafio desafio = { 0 };
     int opcion;
+
     inicializarOrbita(&orbita, ALTURA_INICIAL, MASA_ORION);
 
     do {
@@ -25,8 +26,9 @@ int main(void)
         printf(" 0. Salir\n");
 
         opcion = leerEntero("Elegi una opcion: ", 0, 8);
+
         switch (opcion) {
-            case 1: 
+            case 1:
                 configurarOrbita(&orbita);
                 pulso.realizado = 0;
                 break;
@@ -35,13 +37,15 @@ int main(void)
             case 4: mostrarAceleracion(&orbita);                break;
             case 5: mostrarPulso(&orbita, &pulso);              break;
             case 6: jugarDesafio(&orbita, &desafio);            break;
+            case 7: simulacionGrafica(&orbita);                 break;
             case 8: mostrarReporte(&orbita, &pulso, &desafio);  break;
             case 0:
+                mostrarReporte(&orbita, &pulso, &desafio);
                 printf("Fin de la simulacion. Hasta luego!\n");
                 break;
         }
 
-        if (opcion != 0) {
+        if (opcion != 0 && opcion != 7) {
             pausar();
         }
     } while (opcion != 0);
