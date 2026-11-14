@@ -50,6 +50,6 @@ void mostrarVelocidad(const Orbita *o);
 void mostrarPeriodo(const Orbita *o);
 void mostrarAceleracion(const Orbita *o);
  
-void calcularPulso(const Orbita *o, Pulso *p); //definir porfa
+void calcularPulso(const Orbita *o, Pulso *p);
 void mostrarPulso(const Orbita *o, Pulso *p);
 #endif
